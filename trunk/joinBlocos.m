@@ -1,17 +1,16 @@
 %% Junta os blocos 8x8 numa matriz
-% lenna é 512x512... então qtdBlocos por linha = qtdBlocos por coluna.
+% Supõe que a imagem seja quadrada
 
 function matriz = joinBlocos(G)
 qtdBlocos = size(G, 3);
-dim_i = qtdBlocos/size(G, 1);
-dim_j = qtdBlocos/size(G, 2);
-matriz = zeros(dim_i, dim_j);
+dim = sqrt(qtdBlocos);
+matriz = zeros(dim, dim);
 x = 1; % contador
 
-for i = 0 : (dim_i - 1)/8
+for i = 0 : (dim - 1)
    xFrom = i * 8 + 1;
    xTo = i * 8 + 8;
-   for j = 0 : (dim_j - 1)/8
+   for j = 0 : (dim - 1)
       yFrom = j * 8 + 1;
       yTo = j * 8 + 8;
       matriz(xFrom:xTo, yFrom:yTo) = G( :, :, x);
