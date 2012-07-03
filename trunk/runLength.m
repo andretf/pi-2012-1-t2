@@ -34,7 +34,7 @@ end
 
 if (iZeros > 0)
    ret(pos) = iZeros;
-	pos = pos + 1
+	pos = pos + 1;
 end
 
 % (3) O símbolo EOB (end of block) representa o final do bloco
