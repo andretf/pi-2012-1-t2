@@ -54,7 +54,10 @@ function jpeg = jpeg_compacta(I, q)
             'field_sizeG', size(G),...
             'field_DC', DC,...
             'field_AC', AC);
-
+         
+         
+         
+         
 
 	%%%%%%%%%%%%% FUNÇÕES %%%%%%%%%%%%%%%%
    
