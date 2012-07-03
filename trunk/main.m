@@ -1,13 +1,11 @@
-function ret = main()
-clear all;
-I = imread('lenna.bmp');
-figure, imshow(I);
+% Faz o caulclo do psnr
 
-for q = 1 : 5 : 15
-   jpg = jpeg_compacta(I, q);
-   J = jpeg_descompacta(jpg);
-   psnr(I, J)
+function ret = main(original)
+
+for q = 1 : 3 : 10
+   J = jpeg_descompacta(jpeg_compacta(original, q));
+   figure, imshow(J, title('q = ' + q));
+   q
+   psnr(original, J)
 end;
-
-figure, imshow(J);
 
