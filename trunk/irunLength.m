@@ -1,34 +1,37 @@
-function res = iRunLength(AC)
-EOB = 255;
-res = [];
+% Inverso da RunLength / Cod. Huffman
 
-% k guarda a posição atual no vetor de saída
-k = 1;
-ibloco = 1;
-proximozeros = 1;
+function ret = iRunLength(AC)
+EOB = 255;		% Símbolo End-Of-Block
+pos = 1;			% Indíce atual no vetor de restorno
+iZeros = 1;		% contador dos zeros (n)
+iBloco = 1;
+ret = [];
 
 for i = 1 : size(AC, 2);
+	% (3)
    if AC(i) == EOB
-      for j = ibloco : 63
-         res(k) = 0;
-         k = k+1;
+      for j = iBloco : 63
+         ret(pos) = 0;
+         pos = pos + 1;
       end;
-      ibloco = 1;
-      proximozeros = 1;
-      
-   elseif proximozeros == 1
-      for l = 1:AC(i)
-         res(k) = 0;
-         k = k+1;
-         ibloco = ibloco+1;
+      iBloco = 1;
+      iZeros = 1;
+     
+	% (2)
+   elseif iZeros == 1
+      for l = 1 : AC(i)
+         ret(pos) = 0;
+         pos = pos + 1;
+         iBloco = iBloco + 1;
       end;
-      proximozeros = 0;
+      iZeros = 0;
       
-   elseif proximozeros == 0
-      res(k) = AC(i);
-      k = k+1;
-      ibloco = ibloco+1;
-      proximozeros = 1;
+	% (1)
+   elseif iZeros == 0
+      ret(pos) = AC(i);
+      pos = pos + 1;
+      iBloco = iBloco + 1;
+      iZeros = 1;
    end
 end
 
